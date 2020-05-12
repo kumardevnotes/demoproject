@@ -1,0 +1,22 @@
+Google 2 Step authenticiation:
+
+Turn on 2-Step Verification. With 2-Step Verification (also known as two-factor authentication), you add an extra layer of security to your account. 
+After you set it up, you'll sign in to your account in two steps using: 
+Something you know (your password) Something you have (like your phone or a security key dongle)
+
+Mongo cluster. create a free mongo cluster which provides free clioud DB which will never expire
+
+1. login with gmail id and launch or register with your own email id  https://account.mongodb.com/account/login
+2. choose free cluster, no charges
+3. choose cloud provider and region  - like AWS, Google Cloud platformand AZURE
+4. Login with your gmail kumar.thoudishetti and launch clusters page https://cloud.mongodb.com/v2/5eb8f853b155753f1506be24#clusters
+
+
+6. Heroku with NoJS
+
+https://devcenter.heroku.com/articles/getting-started-with-nodejs
+
+7. logins for HeROKU: kumar.thoudishetti@gmail.com/devnotes_33
+
+github logins: kumar.thoudishetti@gmail.com / devnotes_33
+

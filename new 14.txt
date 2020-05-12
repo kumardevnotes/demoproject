@@ -1,0 +1,217 @@
+Action()
+{
+	
+	web_set_max_html_param_len("20480");
+	
+	web_set_sockets_option("SSL_VERSION", "TLS1.2");
+
+	/*Possible OAUTH authorization was detected. It is recommended to correlate the authorization parameters.*/
+	
+	web_reg_save_param_ex("ParamName=TT","LB=TYPE=","RB=&REALMOID","Ordinal=1",SEARCH_FILTERS,"Scope=Headers","IgnoreRedirections=No","RequestUrl=*/commonag-adp4me-fit.nj.adp.com/*",LAST);
+	web_reg_save_param_ex("ParamName=RMID","LB=REALMOID=","RB=&GUID","Ordinal=1",SEARCH_FILTERS,"Scope=Headers","IgnoreRedirections=No","RequestUrl=*/commonag-adp4me-fit.nj.adp.com/*",LAST);
+	web_reg_save_param_ex("ParamName=SMGTNAME","LB=SMAGENTNAME=","RB=&TARGET","Ordinal=1",SEARCH_FILTERS,"Scope=Headers","IgnoreRedirections=No","RequestUrl=*/commonag-adp4me-fit.nj.adp.com/*",LAST);
+	web_reg_save_param_ex("ParamName=ViewState","LB=ViewState\" value=\"","RB=\" autocomplete","Ordinal=1",SEARCH_FILTERS,"Scope=All","IgnoreRedirections=Yes","RequestUrl=*com*",LAST);
+
+	web_url("commonag-adp4me-fit.nj.adp.com", 
+		"URL=https://commonag-adp4me-fit.nj.adp.com/Portal/", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=", 
+		"Snapshot=t449.inf", 
+		"Mode=HTML", 
+		LAST);
+
+	web_url("locale-en_US.json", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/resources/locales/locale-en_US.json", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t450.inf", 
+		"Mode=HTML", 
+		LAST);
+
+	web_custom_request("ajax", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/ajax?action=adpLoginBean.checkUser&type=METHOD_ACTION&userEntered=KThoudishetti@ADP4MEFIT", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t451.inf", 
+		"Mode=HTML", 
+		"EncType=", 
+		LAST);
+
+	web_custom_request("shim2.fcc", 
+		"URL=https://ewallet-fit.nj.adp.com/arcotlogin/shim2.fcc", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t452.inf", 
+		"Mode=HTML", 
+		"EncType=application/x-www-form-urlencoded; charset=utf-8", 
+		"Body=USER=KThoudishetti@ADP4MEFIT&dummy=&TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		LAST);
+	
+	web_reg_save_param_ex("ParamName=C_challenge","LB=challenge\":\"","RB=\"","Ordinal=1",SEARCH_FILTERS,"Scope=All","IgnoreRedirections=Yes","RequestUrl=*com*",LAST);
+
+	web_custom_request("adpPassword.faces", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/enroll/adpPassword.faces?presentChallengeForm=", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t453.inf", 
+		"Mode=HTML", 
+		"Body=presentChallengeForm=presentChallengeForm&presentChallengeForm:submitButton=&javax.faces.ViewState={ViewState}", 
+		LAST);
+
+	web_reg_save_param_json("ParamName=C_hdId","QueryString=$..arcotId",SEARCH_FILTERS,"Scope=Body","LAST");
+
+	web_custom_request("adpPassword.faces_2", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/enroll/adpPassword.faces?presentChallengeFormArcotId=", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t454.inf", 
+		"Mode=HTML", 
+		"Body=presentChallengeFormArcotId=presentChallengeFormArcotId&presentChallengeFormArcotId:submitButton=&javax.faces.ViewState={ViewState}", 
+		LAST);
+	
+//	lr_output_message("%s",lr_eval_string("{pPassword}"));
+//	lr_output_message("%s",lr_eval_string("{C_challenge}"));
+//	lr_output_message("%s",lr_eval_string("{C_hdId}"));
+	
+	web_js_run(
+		"Code=getEncryptedPassword("
+					"LR.getParam('pPassword'),"
+					"LR.getParam('C_challenge'),"
+					"LR.getParam('C_hdId')"
+				");",
+		"ResultParam=values",
+		SOURCES,
+		"File=ArcotLogin.js",ENDITEM,
+		"File=sha1.js",ENDITEM,
+		"File=arcotjsclient_jso.js",ENDITEM,
+		LAST);
+	
+//	lr_output_message("%s",lr_eval_string("{values}"));
+
+	web_custom_request("presentChallenge.faces", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/roaming/presentChallenge.faces", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t455.inf", 
+		"Mode=HTML", 
+		"Body=passwordForm=passwordForm&passwordForm:password={values}&dummy=&passwordForm:computerType=&passwordForm:submitButton=&"
+		"passwordForm:forgotUserIdText=&pm_fp="
+		"version%3D3%2E5%2E0%5F1%26pm%5Ffpua%3Dmozilla%2F5%2E0%20%28windows%20nt%2010%2E0%3B%20wow64%3B%20trident%2F7%2E0%3B%20%2Enet4%2E0c%3B%20%2Enet4%2E0e%3B%20%2Enet%20clr%202%2E0%2E50727%3B%20%2Enet%20clr%203%2E0%2E30729%3B%20%2Enet%20clr%203%2E5%2E30729%3B%20rv%3A11%2E0%29%20like%20gecko%7C5%2E0%20%28Windows%20NT%2010%2E0%3B%20WOW64%3B%20Trident%2F7%2E0%3B%20%2ENET4%2E0C%3B%20%2ENET4%2E0E%3B%20%2ENET%20CLR%202%2E0%2E50727%3B%20%2ENET%20CLR%203%2E0%2E30729%3B%20%2ENET%20CLR%203%2E5%2E30729%3B%20rv%3A1"
+		"1%2E0%29%20like%20Gecko%7CWin32%7C0%7Cx86%7Cen%2DUS%7C16384%26pm%5Ffpsc%3D24%7C1920%7C1080%7C1040%26pm%5Ffpsw%3D%26pm%5Ffptz%3D%2D5%26pm%5Ffpln%3Dlang%3Den%2DUS%7Csyslang%3Den%2DUS%7Cuserlang%3Den%2DUS%26pm%5Ffpjv%3D1%26pm%5Ffpco%3D1%26pm%5Ffpasw%3Dflash%7Cnpctrl%26pm%5Ffpan%3DNetscape%26pm%5Ffpacn%3DMozilla%26pm%5Ffpol%3Dtrue%26pm%5Ffposp%3D%26pm%5Ffpup%3D%26pm%5Ffpsaw%3D1920%26pm%5Ffpspd%3D24%26pm%5Ffpsbd%3D0%26pm%5Ffpsdx%3D96%26pm%5Ffpsdy%3D96%26pm%5Ffpslx%3D96%26pm%5Ffpsly%3D96%26pm%5Ffpsfse%3"
+		"Dfalse%26pm%5Ffpsui%3D%26pm%5Fos%3DWindows%26pm%5Fbrmjv%3D11%26pm%5Fbr%3DExplorer%26pm%5Finpt%3D%26pm%5Fexpt%3D&passwordForm:forgotUserPasswordText=&flDownload=true&arcotFlashCookie=&returnUrl=&javax.faces.ViewState={ViewState}", 
+		LAST);
+	
+	lr_think_time(2);
+	
+	web_reg_save_param_ex("ParamName=TokenId","LB=\"TokenId\":\"","RB=\"","Ordinal=1",SEARCH_FILTERS,"Scope=All","IgnoreRedirections=Yes","RequestUrl=*com*",LAST);
+
+	web_custom_request("adpPassword.faces_3", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/enroll/adpPassword.faces?finalRedirectPage", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t456.inf", 
+		"Mode=HTML", 
+		"Body=finalRedirectPage=finalRedirectPage&finalRedirectPage:submitButton=&javax.faces.ViewState={ViewState}&", 
+		LAST);
+	
+//	lr_output_message("%s",lr_eval_string("{TokenId}"));
+
+	web_url("redirect.faces", 
+		"URL=https://ewallet-fit.nj.adp.com/auth/enroll/redirect.faces", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/adpLogin.faces?TYPE={TT}&REALMOID={RMID}&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME={SMGTNAME}&TARGET=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", 
+		"Snapshot=t457.inf", 
+		"Mode=HTML", 
+		LAST);
+	
+	//web_reg_save_param_ex("ParamName=loggedinUserId","LB=loggedinUserId = '","RB=';","Ordinal=1",SEARCH_FILTERS,"Scope=All","IgnoreRedirections=Yes","RequestUrl=*com*",LAST);
+	
+	web_submit_data("shimfinal.fcc", 
+		"Action=https://ewallet-fit.nj.adp.com/arcotlogin/shimfinal.fcc", 
+		"Method=POST", 
+		"RecContentType=text/html", 
+		"Referer=https://ewallet-fit.nj.adp.com/auth/enroll/redirect.faces", 
+		"Snapshot=t467.inf", 
+		"Mode=HTML", 
+		ITEMDATA, 
+		"Name=SMENC", "Value=UTF-8", ENDITEM, 
+		"Name=SMLOCALE", "Value=US-EN", ENDITEM, 
+		"Name=USER", "Value=KThoudishetti@ADP4MEFIT", ENDITEM, 
+		"Name=orgName", "Value=defaultorg", ENDITEM, 
+		"Name=loginID", "Value=KThoudishetti@ADP4MEFIT", ENDITEM, 
+		"Name=PASSWORD", "Value={\"TokenId\":\"{TokenId}\",\"Password\":\"\"}", ENDITEM, 
+		"Name=status", "Value=Authenticated", ENDITEM, 
+		"Name=TYPE", "Value=", ENDITEM, 
+		"Name=REALMOID", "Value=", ENDITEM, 
+		"Name=GUID", "Value=", ENDITEM, 
+		"Name=SMAUTHREASON", "Value=27", ENDITEM, 
+		"Name=METHOD", "Value=", ENDITEM, 
+		"Name=SMAGENTNAME", "Value={SMGTNAME}", ENDITEM, 
+		"Name=TARGET", "Value=-SM-https%3a%2f%2fcommonag--adp4me--fit%2enj%2eadp%2ecom%2fportal%2fuscportal", ENDITEM, 
+		LAST);
+	
+    //lr_output_message("%s",lr_eval_string("{loggedinUserId}"));
+	
+	//web_reg_save_param_ex("ParamName=EncryptedParam","LB=i_1=\\r\\n","RB=\"","Ordinal=1",SEARCH_FILTERS,"Scope=All","IgnoreRedirections=Yes","RequestUrl=*com*",LAST);
+	
+	web_url("USCPortal", 
+		"URL=https://commonag-adp4me-fit.nj.adp.com/Portal/USCPortal", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://commonag-adp4me-fit.nj.adp.com/Portal/USCPortal", 
+		"Snapshot=t1265.inf", 
+		"Mode=HTML", 
+		EXTRARES, 
+		"Url=Portal/api/User", ENDITEM, 
+		"Url=Portal/api/ClientCalendar/GetPortalUserInfo", ENDITEM, 
+		"Url=Portal/api/ClientCalendar/GetTabHelpVideo", ENDITEM, 
+		"Url=Portal/api/MastHeadNav?navURL=https://commonag-adp4me-fit.nj.adp.com/Portal/USCPortal", ENDITEM, 
+		"Url=Portal/api/MastHeadNav/GetNavBar", ENDITEM, 
+		"Url=Portal/api/HomePageTile/GetAllRichTextContents", ENDITEM, 
+		"Url=Portal/api/Tiles/GetDashboardTiles", ENDITEM, 
+		"Url=Portal/api/HomePageTile/GetClientQuickLinks?portaluserid={loggedinUserId}", ENDITEM, 
+		"Url=Portal/api/HomePageTile/GetMyTile?portalUserID={loggedinUserId}", ENDITEM, 
+		"Url=Portal/api/ClientCalendar/LogClientTab?tabToLog=BillingAndAccountSummaryTabClickLog", ENDITEM, 
+		LAST);
+	
+		web_url("SaveMyTile", 
+		"URL=https://commonag-adp4me-fit.nj.adp.com/Portal/Portal/api/HomePageTile/SaveMyTile?PortalUserID=1571398&Title=null&ImageSizeInBytes=34357&Url=null&IsLegalAcknowledged=true&ImageData=AAAAA&ImageName=gggg", 
+		"Method=POST", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://commonag-adp4me-fit.nj.adp.com/Portal/USCPortal", 
+		"Snapshot=t1265.inf", 
+		"Mode=HTML",
+		"EncType=", 
+		LAST);
+	
+	
+   //Logout
+	web_set_sockets_option("TLS_SNI", "1");
+
+	web_url("LinkJump.aspx", 
+		"URL=https://commonag-adp4me-fit.nj.adp.com/Portal/LinkJump.aspx?type=1&id=5", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=https://commonag-adp4me-fit.nj.adp.com/Portal/USCPortal", 
+		"Snapshot=t771.inf", 
+		"Mode=HTML", 
+		LAST);
+	
+	return 0;
+}

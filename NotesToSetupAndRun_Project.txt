@@ -1,0 +1,16 @@
+1. Install Node JS and npm
+2. check node version and npm version to confirm the installtion part node --version and npm --version
+3. install visual studio code
+4. install angular CLI package globally
+5. open UI project and remove node_modules folder and hit nmp install to download the packages required (Angular 8.. MVC framework, HTML, CSS, Typescript and Javascript)
+6. open Server project and remove node_modules folder and hit nmp install to download the packages required (NodeJS express framework witrh REST Services)
+7. Open mongodb and run mongod server using mongod command in bin folder (MongoDB)
+8. OPen mongo compass and connect the mongodb server
+9. Run Server project using nodemon app.js command and check the port where it is configured to run
+10. check the server main page using localhost:PortNum configured for server
+11. Run ng serve command  in UI project terminal to run the app and check the port where it is configured to run
+12. check the app running or not using localhost:PortNum configured for app
+13. Then login as admin/vendor/customer and perform various operations to check the app funcationality
+14. We can also use Postman or AdvancedRestClient to test the services provided by Server
+
+================================================ THE END ==========================================================
